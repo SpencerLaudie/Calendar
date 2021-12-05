@@ -5,7 +5,7 @@
         <legend>Create an Event</legend>
         <input v-model='title' placeholder="title">
         <v-date-picker v-model='date' color="#f6a192" elevation='10'></v-date-picker>
-        <button type="submit" class="button">Create</button>
+        <router-link to="/"><button type="submit" class="button">Create</button></router-link>
       </form>
     </div>
   </div>
