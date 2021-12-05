@@ -31,8 +31,6 @@ export default {
       try {
         console.log(this.title);
         console.log(this.date.toISOString);
-        formData.append('title', this.title);
-        formData.append('date', this.date);
         await axios.post("/api/events", {
           title: this.title,
           date: this.date
