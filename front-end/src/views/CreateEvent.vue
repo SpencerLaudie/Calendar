@@ -4,7 +4,7 @@
       <form class="" @submit.prevent="create">
         <legend>Create an Event</legend>
         <input v-model='title' placeholder="title">
-        <v-date-picker v-model='date' color="#f6a192" elevation='10'></v-date-picker>
+        <DatePicker v-model='date' :value='date'></DatePicker>
         <button type="submit" class="button">Create</button>
       </form>
     </div>
@@ -13,8 +13,12 @@
 
 <script>
 import axios from 'axios';
+import Datepicker from 'vuejs-datepicker';
 export default {
   name: 'CreateEvent',
+  components: {
+    DatePicker
+  },
   data() {
     return {
       title: '',
