@@ -22,21 +22,23 @@ export default {
   data() {
     return {
       title: '',
-      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      date: new Date(Date.now()),
       error: '',
     }
   },
   methods: {
     async create() {
       try {
-        const formData = new FormData();
         console.log(this.title);
+        console.log(this.date.toISOString);
         formData.append('title', this.title);
         formData.append('date', this.date);
-        console.log(formData);
-        await axios.post("/api/events", formData);
+        await axios.post("/api/events", {
+          title: this.title,
+          date: this.date
+        });
         this.title = '';
-        this.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10);
+        this.date = new Date(Date.now());
         this.$router.push('/');
       } catch (error) {
         this.error = "Error: " + error.response.data.message;
