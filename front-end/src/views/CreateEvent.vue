@@ -5,7 +5,7 @@
         <legend>Create an Event</legend>
         <input v-model='title' placeholder="title">
         <v-date-picker v-model='date' color="#f6a192" elevation='10'></v-date-picker>
-        <router-link to="/"><button type="submit" class="button">Create</button></router-link>
+        <button type="submit" class="button">Create</button>
       </form>
     </div>
   </div>
@@ -31,6 +31,7 @@ export default {
         await axios.post("/api/events", formData);
         this.title = '';
         this.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10);
+        router.push('/');
       } catch (error) {
         this.error = "Error: " + error.response.data.message;
       }
