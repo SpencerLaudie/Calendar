@@ -13,7 +13,7 @@
 
 <script>
 import axios from 'axios';
-import Datepicker from 'vuejs-datepicker';
+import DatePicker from 'vuejs-datepicker';
 export default {
   name: 'CreateEvent',
   components: {
