@@ -31,7 +31,7 @@ export default {
         await axios.post("/api/events", formData);
         this.title = '';
         this.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10);
-        router.push('/');
+        this.$router.push('/');
       } catch (error) {
         this.error = "Error: " + error.response.data.message;
       }
