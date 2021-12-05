@@ -26,8 +26,10 @@ export default {
     async create() {
       try {
         const formData = new FormData();
+        console.log(this.title);
         formData.append('title', this.title);
         formData.append('date', this.date);
+        console.log(formData);
         await axios.post("/api/events", formData);
         this.title = '';
         this.date = (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10);

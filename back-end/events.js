@@ -21,6 +21,7 @@ const eventSchema = new mongoose.Schema({
 const Event = mongoose.model('Event', eventSchema);
 
 router.post("/", validUser, async (req, res) => {
+  console.log(req.body);
   const event = new Event({
     user: req.user,
     title: req.body.title,
