@@ -35,7 +35,7 @@ export default {
 
         if (this.$root.$options.router.history.current.path != '/')
           this.$router.push('/');
-        else rerender += 1;;
+        else this.rerender += 1;
       } catch (error) {
         this.$root.$data.user = null;
       }
