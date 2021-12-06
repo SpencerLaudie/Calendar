@@ -27,7 +27,7 @@ export default {
       try {
         await axios.delete("/api/users");
         this.$root.$data.user = null;
-        if (this.$root.data.$route.path != '/')
+        if (this.$root.$data.$route.path != '/')
           this.$router.push('/');
         else this.$forceupdate();
       } catch (error) {
