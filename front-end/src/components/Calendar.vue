@@ -93,6 +93,7 @@ export default {
     getEvents: async function(year, month) {
       try {
         this.response = await axios.get("/api/events", {params: {year, month}});
+        console.log(this.response);
         return this.response.data;
       } catch (error) {
         this.error = error.response.data.message;
