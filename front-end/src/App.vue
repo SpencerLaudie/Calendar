@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="bod">
-      <router-view/>
+      <router-view :key='rerender'/>
     </div>
     <div id="sidebar">
       <router-link to="/">Calendar</router-link>
@@ -17,6 +17,11 @@
 <script>
 import axios from 'axios';
 export default {
+  data() {
+    return {
+      rerender: 0,
+    }
+  }
   computed: {
     user() {
       return this.$root.$data.user;
@@ -28,15 +33,9 @@ export default {
         await axios.delete("/api/users");
         this.$root.$data.user = null;
 
-        console.log(this.$root.$options);
-        console.log(this.$root.$options.router);
-        console.log(this.$root.$options.router.history);
-        console.log(this.$root.$options.router.history.current);
-        console.log(this.$root.$options.router.history.current.path);
-
         if (this.$root.$options.router.history.current.path != '/')
           this.$router.push('/');
-        else this.$forceupdate();
+        else rerender += 1;;
       } catch (error) {
         this.$root.$data.user = null;
       }
