@@ -21,7 +21,7 @@ export default {
     return {
       rerender: 0,
     }
-  }
+  },
   computed: {
     user() {
       return this.$root.$data.user;
