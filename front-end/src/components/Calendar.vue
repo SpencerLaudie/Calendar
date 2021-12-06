@@ -48,9 +48,6 @@ export default {
       var nextMonthDays = this.createNextMonth(this.year, this.month);
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
     },
-    dailyEvents: function(day) {
-      return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month && event.date.getDate == day));
-    },
     monthString: function() {
       switch (this.month) {
         case 0:
@@ -83,6 +80,9 @@ export default {
     }
   },
   methods: {
+    dailyEvents: function(day) {
+      return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month && event.date.getDate == day));
+    },
     createCurrentMonth: function(year, month, daysInMonth) {
       return [...Array(daysInMonth)].map((day, index)=> {
         return {
