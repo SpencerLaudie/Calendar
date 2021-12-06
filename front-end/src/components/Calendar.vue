@@ -18,10 +18,9 @@
         <div class="day-of-week">SAT</div>
       </div>
       <div id="calendar-days">
-        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth}" v-bind:key='day.date.toString()'>
-          <!--, 'event': dailyEvents.length > 0-->
+        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth, 'event': dailyEvents(day.dayOfMonth).length > 0}" v-bind:key='day.date.toString()'>
           <div class="dayNum">{{day.dayOfMonth}}</div>
-          <div v-for='(event, index) in dailyEvents(day.dayOfMonth)' v-bind:key="index">{{event.title}}</div>
+          <div class='events' v-for='(event, index) in dailyEvents(day.dayOfMonth)' v-bind:key="index">{{event.title}}</div>
         </div>
       </div>
     </div>
@@ -82,15 +81,6 @@ export default {
   },
   methods: {
     dailyEvents(day) {
-      console.log(this.events);
-      console.log(day);
-      console.log(this.events.filter(ev => {
-        let d = new Date(ev.date);
-        if (d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day)
-          return true;
-        else return false;
-      }));
-
       return this.events.filter(ev => {
         let d = new Date(ev.date);
         if (d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day)
@@ -231,6 +221,11 @@ export default {
 .event {
   background-color: #EF9A9A;
   color: white;
+}
+
+.events {
+  text-align: left;
+  
 }
 
 </style>
