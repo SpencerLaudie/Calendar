@@ -39,9 +39,7 @@ export default {
     }
   },
   async mounted() {
-    if (this.$root.data.user) {
-      this.events = await this.getEvents();
-    }
+    this.events = await this.getEvents();
   },
   computed: {
     days: function() {
