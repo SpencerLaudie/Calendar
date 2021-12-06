@@ -49,8 +49,8 @@ export default {
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
       // loadEvents(previousMonthDays.length, year, month);
     },
-    monthlyEvents: function() {
-      return this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
+    monthlyEvents: async function() {
+      return await this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
     },
     monthString: function() {
       switch (this.month) {
