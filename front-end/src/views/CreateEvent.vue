@@ -3,8 +3,8 @@
     <div class="create-event-box">
       <form class="" @submit.prevent="create">
         <legend>Create an Event</legend>
-        <input v-model='title' placeholder="title">
-        <DatePicker v-model='date' :value='date'></DatePicker>
+        <input v-model='title' placeholder="title" class='input'>
+        <DatePicker v-model='date' :value='date' input-class='input'></DatePicker>
         <button type="submit" class="button">Create</button>
       </form>
     </div>
@@ -76,7 +76,14 @@ form legend {
   font-size: 25px;
 }
 
-input {
+.input {
+  margin-top: 10px;
+  border: none;
+  border-bottom: 2px solid #B5B5B5;
+  padding: 8px 0;
+}
+
+DatePicker {
   margin-top: 10px;
   border: none;
   border-bottom: 2px solid #B5B5B5;
