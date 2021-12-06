@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       year: new Date().getFullYear(),
-      month: new Date().getMonth()
+      month: new Date().getMonth(),
     }
   },
   computed: {
@@ -85,9 +85,18 @@ export default {
         return {
           date: new Date(year, month, index + 1),
           dayOfMonth: index + 1,
-          isCurrentMonth: true
+          isCurrentMonth: true,
+          events: getEvents(year, month),
         };
       })
+    },
+    getEvents: function(year, month) {
+      try {
+        this.response = await axios.get("/api/events", {params: {year, month}});
+        return this.response.data;
+      } catch (error) {
+        this.error = error.response.data.message;
+      }
     },
     createPreviousMonth: function(currentMonthDays, year, month) {
       const numVisibleDaysPrevMonth = currentMonthDays[0].date.getDay();

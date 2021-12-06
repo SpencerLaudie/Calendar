@@ -37,10 +37,12 @@ router.post("/", validUser, async (req, res) => {
 });
 
 router.get("/", validUser, async (req, res) => {
+  console.log(req);
   try {
     let events = await Event.find({
       user: req.user
     }).populate('user');
+    console.log(event);
     return res.send(events);
   } catch (error) {
     return res.sendStatus(500);

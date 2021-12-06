@@ -90,7 +90,7 @@ DatePicker {
   padding: 8px 0;
 }
 
-input:focus {
+.input:focus {
   outline: none;
 }
 
