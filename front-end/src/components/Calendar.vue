@@ -86,12 +86,16 @@ export default {
       console.log(day);
       console.log(this.events.filter(ev => {
         d = new Date(ev.date);
-        d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day
-      });
+        if (d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day)
+          return true;
+        else return false;
+      }));
 
       return this.events.filter(ev => {
         d = new Date(ev.date);
-        d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day
+        if (d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day)
+          return true;
+        else return false;
       });
     },
     createCurrentMonth: function(year, month, daysInMonth) {
