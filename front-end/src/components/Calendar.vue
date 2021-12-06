@@ -81,12 +81,15 @@ export default {
   },
   methods: {
     createCurrentMonth: function(year, month, daysInMonth) {
+      if (this.$root.$data.user) {
+        this.events = getEvents(year, month);
+      }
       return [...Array(daysInMonth)].map((day, index)=> {
         return {
           date: new Date(year, month, index + 1),
           dayOfMonth: index + 1,
           isCurrentMonth: true,
-          events: this.getEvents(year, month),
+          events: this.events,
         };
       })
     },
