@@ -18,10 +18,9 @@
         <div class="day-of-week">SAT</div>
       </div>
       <div id="calendar-days">
-        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth  }" v-bind:key='day.date.toString()'>
+        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth, 'event': events.length > 0}" v-bind:key='day.date.toString()'>
           <div class="dayNum">{{day.dayOfMonth}}</div>
-          <!--, 'event': monthlyEvents.length > 0-->
-          <!-- <div class="event" v-for='event in monthlyEvents' v-bind:key="event.date.toString()">{{event.title}}</div> -->
+          <div v-for='event in events' v-bind:key="event.date.toString()">{{event.title}}</div>
         </div>
       </div>
     </div>
@@ -40,7 +39,9 @@ export default {
     }
   },
   async mounted() {
-    this.events = await this.getEvents();
+    if (this.$root.data.user) {
+      this.events = await this.getEvents();
+    }
   },
   computed: {
     days: function() {
@@ -48,9 +49,10 @@ export default {
       var previousMonthDays = this.createPreviousMonth(currentMonthDays, this.year, this.month);
       var nextMonthDays = this.createNextMonth(this.year, this.month);
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
-      // loadEvents(previousMonthDays.length, year, month);
     },
-
+    monthlyEvents: async function() {
+      return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
+    },
     monthString: function() {
       switch (this.month) {
         case 0:
@@ -82,11 +84,6 @@ export default {
       }
     }
   },
-  // created: {
-  //   monthlyEvents: async function() {
-  //     return await this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
-  //   },
-  // },
   methods: {
     createCurrentMonth: function(year, month, daysInMonth) {
       return [...Array(daysInMonth)].map((day, index)=> {
@@ -218,6 +215,11 @@ export default {
 .dayNum {
   font-family: 'Azeret Mono', sans-serif;
   align-self: flex-end;
+}
+
+.event {
+  background-color": #EF9A9A;
+  color: white;
 }
 
 </style>
