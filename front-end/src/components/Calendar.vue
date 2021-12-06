@@ -18,7 +18,8 @@
         <div class="day-of-week">SAT</div>
       </div>
       <div id="calendar-days">
-        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth, 'event': dailyEvents(day.date).length > 0}" v-bind:key='day.date.toString()'>
+        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth}" v-bind:key='day.date.toString()'>
+          <!--, 'event': dailyEvents.length > 0-->
           <div class="dayNum">{{day.dayOfMonth}}</div>
           <div v-for='(event, index) in dailyEvents' v-bind:key="index">{{event.title}}</div>
         </div>
