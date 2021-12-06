@@ -82,9 +82,17 @@ export default {
   },
   methods: {
     dailyEvents(day) {
+      console.log(this.events);
       console.log(day);
-      console.log(this.events.filter(ev => ev.date.getFullYear() == this.year && ev.date.getMonth() == this.month && ev.date.getDate() == day));
-      return this.events.filter(ev => ev.date.getFullYear() == this.year && ev.date.getMonth() == this.month && ev.date.getDate() == day);
+      console.log(this.events.filter(ev => {
+        d = new Date(ev.date);
+        d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day
+      });
+
+      return this.events.filter(ev => {
+        d = new Date(ev.date);
+        d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day
+      });
     },
     createCurrentMonth: function(year, month, daysInMonth) {
       return [...Array(daysInMonth)].map((day, index)=> {
