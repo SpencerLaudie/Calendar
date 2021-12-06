@@ -90,7 +90,7 @@ export default {
         };
       })
     },
-    getEvents: function(year, month) {
+    getEvents: async function(year, month) {
       try {
         this.response = await axios.get("/api/events", {params: {year, month}});
         return this.response.data;
