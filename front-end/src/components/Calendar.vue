@@ -27,7 +27,7 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
   name: 'Calendar',
   components: {
@@ -86,7 +86,7 @@ export default {
           date: new Date(year, month, index + 1),
           dayOfMonth: index + 1,
           isCurrentMonth: true,
-          events: getEvents(year, month),
+          events: this.getEvents(year, month),
         };
       })
     },
