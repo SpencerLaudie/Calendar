@@ -87,7 +87,7 @@ export default {
   methods: {
     createCurrentMonth: function(year, month, daysInMonth) {
       if (this.$root.$data.user) {
-        this.events = this.getEvents(year, month);
+        this.events = this.getEvents();
         console.log(this.events);
       }
       return [...Array(daysInMonth)].map((day, index)=> {
@@ -99,7 +99,7 @@ export default {
         };
       })
     },
-    getEvents: async function(year, month) {
+    getEvents: async function() {
       try {
         this.response = await axios.get("/api/events");
         console.log('event data');
