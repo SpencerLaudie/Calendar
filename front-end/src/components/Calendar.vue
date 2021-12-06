@@ -50,7 +50,7 @@ export default {
       var nextMonthDays = this.createNextMonth(this.year, this.month);
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
     },
-    monthlyEvents: async function() {
+    monthlyEvents: function() {
       return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
     },
     monthString: function() {
