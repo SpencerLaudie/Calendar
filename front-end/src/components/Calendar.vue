@@ -20,7 +20,7 @@
       <div id="calendar-days">
         <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth, 'event': dailyEvents(day.date).length > 0}" v-bind:key='day.date.toString()'>
           <div class="dayNum">{{day.dayOfMonth}}</div>
-          <div v-for='event in dailyEvents(day.date)' v-bind:key="event.date.toString()">{{event.title}}</div>
+          <div v-for='(event, index) in dailyEvents' v-bind:key="index">{{event.title}}</div>
         </div>
       </div>
     </div>
@@ -79,10 +79,11 @@ export default {
       }
     }
   },
+  dailyEvents() {
+    return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month && event.date.getDate == event.dayOfMonth));
+  },
   methods: {
-    dailyEvents: function(day) {
-      return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month && event.date.getDate == day));
-    },
+
     createCurrentMonth: function(year, month, daysInMonth) {
       return [...Array(daysInMonth)].map((day, index)=> {
         return {
@@ -95,8 +96,6 @@ export default {
     getEvents: async function() {
       try {
         this.response = await axios.get("/api/events");
-        console.log('event data');
-        console.log(this.response.data);
         return this.response.data;
       } catch (error) {
         this.error = error.response.data.message;
