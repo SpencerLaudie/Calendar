@@ -34,7 +34,7 @@ export default {
         console.log(this.$root.$data.$route.path);
         console.log(this.$router);
 
-        if (this.$root.$data.$route.path != '/')
+        if (this.$root.$options.router.history.current.path != '/')
           this.$router.push('/');
         else this.$forceupdate();
       } catch (error) {
