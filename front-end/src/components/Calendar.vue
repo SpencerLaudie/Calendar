@@ -80,6 +80,8 @@ export default {
       }
     },
     dailyEvents() {
+      console.log(event);
+      console.log(this.events.filter(e => (e.date.getFullYear == this.year && e.date.getMonth == this.month && e.date.getDate == event.date.getDate)));
       return this.events.filter(e => (e.date.getFullYear == this.year && e.date.getMonth == this.month && e.date.getDate == event.date.getDate));
     },
   },
