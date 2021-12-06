@@ -37,6 +37,7 @@ export default {
     return {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
+      events: []
     }
   },
   computed: {
@@ -82,7 +83,7 @@ export default {
   methods: {
     createCurrentMonth: function(year, month, daysInMonth) {
       if (this.$root.$data.user) {
-        this.events = getEvents(year, month);
+        this.events = this.getEvents(year, month);
       }
       return [...Array(daysInMonth)].map((day, index)=> {
         return {
