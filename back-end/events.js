@@ -37,14 +37,8 @@ router.post("/", validUser, async (req, res) => {
 });
 
 router.get("/", validUser, async (req, res) => {
-  console.log("in get router");
-  console.log(req.data.args);
-  console.log(new Date(req.data.args.year, req.data.args.month, 0));
-  console.log(new Date(req.data.args.year, req.data.args.month+1, -1));
-  try {
     let events = await Event.find({
       user: req.user,
-      date: {$gte:new Date(req.data.args.year, req.data.args.month, 0),$lt:new Date(req.data.args.year, req.data.args.month+1, -1)}
     }).populate('user');
     return res.send(events);
   } catch (error) {
