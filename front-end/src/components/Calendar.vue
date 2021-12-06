@@ -18,9 +18,10 @@
         <div class="day-of-week">SAT</div>
       </div>
       <div id="calendar-days">
-        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth, 'event': monthlyEvents.length() > 0}" v-bind:key='day.date.toString()'>
+        <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth  }" v-bind:key='day.date.toString()'>
           <div class="dayNum">{{day.dayOfMonth}}</div>
-          <div class="event" v-for='event in monthlyEvents' v-bind:key="event.date.toString()">{{event.title}}</div>
+          <!--, 'event': monthlyEvents.length > 0-->
+          <!-- <div class="event" v-for='event in monthlyEvents' v-bind:key="event.date.toString()">{{event.title}}</div> -->
         </div>
       </div>
     </div>
@@ -31,13 +32,11 @@
 import axios from 'axios'
 export default {
   name: 'Calendar',
-  components: {
-
-  },
   data() {
     return {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
+      events: getEvents(),
     }
   },
   computed: {
@@ -81,11 +80,11 @@ export default {
       }
     }
   },
-  created: {
-    monthlyEvents: async function() {
-      return await this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
-    },
-  },
+  // created: {
+  //   monthlyEvents: async function() {
+  //     return await this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
+  //   },
+  // },
   methods: {
     createCurrentMonth: function(year, month, daysInMonth) {
       return [...Array(daysInMonth)].map((day, index)=> {
