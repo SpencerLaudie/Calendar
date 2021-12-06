@@ -36,7 +36,7 @@ export default {
     return {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
-      events: getEvents(),
+      events: this.getEvents(),
     }
   },
   computed: {
