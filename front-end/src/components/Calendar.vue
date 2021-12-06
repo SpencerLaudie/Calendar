@@ -36,15 +36,17 @@ export default {
     return {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
-      events: this.getEvents(),
+      events: [],
     }
+  },
+  async mounted: {
+    this.events = await this.getEvents();
   },
   computed: {
     days: function() {
       var currentMonthDays = this.createCurrentMonth(this.year, this.month, new Date(this.year, this.month+1, 0).getDate());
       var previousMonthDays = this.createPreviousMonth(currentMonthDays, this.year, this.month);
       var nextMonthDays = this.createNextMonth(this.year, this.month);
-
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
       // loadEvents(previousMonthDays.length, year, month);
     },
