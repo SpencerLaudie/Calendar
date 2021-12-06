@@ -85,14 +85,14 @@ export default {
       console.log(this.events);
       console.log(day);
       console.log(this.events.filter(ev => {
-        d = new Date(ev.date);
+        let d = new Date(ev.date);
         if (d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day)
           return true;
         else return false;
       }));
 
       return this.events.filter(ev => {
-        d = new Date(ev.date);
+        let d = new Date(ev.date);
         if (d.getFullYear() == this.year && d.getMonth() == this.month && d.getDate() == day)
           return true;
         else return false;
