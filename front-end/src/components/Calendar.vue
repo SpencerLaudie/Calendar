@@ -39,7 +39,7 @@ export default {
       events: [],
     }
   },
-  async mounted: {
+  async mounted() {
     this.events = await this.getEvents();
   },
   computed: {
