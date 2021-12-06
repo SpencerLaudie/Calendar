@@ -101,10 +101,13 @@ export default {
     },
     getEvents: async function(year, month) {
       try {
-        this.response = await axios.get("/api/events", {params: {year, month}});
+        this.response = await axios.get("/api/events");
+        console.log('event data');
+        console.log(this.response.data);
         return this.response.data;
       } catch (error) {
         this.error = error.response.data.message;
+        return ['error'];
       }
     },
     createPreviousMonth: function(currentMonthDays, year, month) {
