@@ -21,7 +21,7 @@
         <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth}" v-bind:key='day.date.toString()'>
           <!--, 'event': dailyEvents.length > 0-->
           <div class="dayNum">{{day.dayOfMonth}}</div>
-          <div v-for='(event, index) in dailyEvents' v-bind:key="index">{{event.title}}</div>
+          <div v-for='(event, index) in dailyEvents(day.dayOfMonth)' v-bind:key="index">{{event.title}}</div>
         </div>
       </div>
     </div>
@@ -79,14 +79,13 @@ export default {
           return 'not a month';
       }
     },
-    dailyEvents() {
-      console.log(event);
-      console.log(this.events.filter(e => (e.date.getFullYear == this.year && e.date.getMonth == this.month && e.date.getDate == event.date.getDate)));
-      return this.events.filter(e => (e.date.getFullYear == this.year && e.date.getMonth == this.month && e.date.getDate == event.date.getDate));
-    },
   },
   methods: {
-
+    dailyEvents(day) {
+      console.log(day);
+      console.log(this.events.filter(e => (e.date.getFullYear == this.year && e.date.getMonth == this.month && e.date.getDate == day)));
+      return this.events.filter(e => (e.date.getFullYear == this.year && e.date.getMonth == this.month && e.date.getDate == day));
+    },
     createCurrentMonth: function(year, month, daysInMonth) {
       return [...Array(daysInMonth)].map((day, index)=> {
         return {
