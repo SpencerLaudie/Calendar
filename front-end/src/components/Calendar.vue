@@ -39,7 +39,7 @@ export default {
     }
   },
   async mounted() {
-    if (user)
+    if (this.user)
       this.events = await this.getEvents();
   },
   computed: {
