@@ -219,7 +219,7 @@ export default {
 }
 
 .event {
-  background-color: #f6b092;
+  background-color: #f6a192;
   color: white;
 }
 
