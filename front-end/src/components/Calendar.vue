@@ -219,13 +219,13 @@ export default {
 }
 
 .event {
-  background-color: #EF9A9A;
+  background-color: #f6b092;
   color: white;
 }
 
 .events {
   text-align: left;
-  
+
 }
 
 </style>
