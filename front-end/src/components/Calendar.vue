@@ -20,7 +20,7 @@
       <div id="calendar-days">
         <div class='calendar-day' v-for='day in days'  v-bind:class="{'off-month': !day.isCurrentMonth, 'event': monthlyEvents.length > 0}" v-bind:key='day.date.toString()'>
           <div class="dayNum">{{day.dayOfMonth}}</div>
-          <div class="event" v-for='event in events' v-bind:key="event.date.toString()"></div>
+          <div class="event" v-for='event in day.events' v-bind:key="event.date.toString()"></div>
         </div>
       </div>
     </div>
@@ -50,9 +50,9 @@ export default {
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
       // loadEvents(previousMonthDays.length, year, month);
     },
-    monthlyEvents: function() {
-      return this.events.filter(event => event.date.getFullYear == this.year && event.date.getMonth == this.month);
-    },
+    // monthlyEvents: function() {
+    //   return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
+    // },
     monthString: function() {
       switch (this.month) {
         case 0:
@@ -88,6 +88,7 @@ export default {
     createCurrentMonth: function(year, month, daysInMonth) {
       if (this.$root.$data.user) {
         this.events = this.getEvents(year, month);
+        console.log(this.events);
       }
       return [...Array(daysInMonth)].map((day, index)=> {
         return {
