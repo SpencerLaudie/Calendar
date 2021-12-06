@@ -49,9 +49,7 @@ export default {
       return [...previousMonthDays, ...currentMonthDays, ...nextMonthDays];
       // loadEvents(previousMonthDays.length, year, month);
     },
-    monthlyEvents: async function() {
-      return await this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
-    },
+
     monthString: function() {
       switch (this.month) {
         case 0:
@@ -82,6 +80,11 @@ export default {
           return 'not a month';
       }
     }
+  },
+  created: {
+    monthlyEvents: async function() {
+      return await this.getEvents().filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month));
+    },
   },
   methods: {
     createCurrentMonth: function(year, month, daysInMonth) {
