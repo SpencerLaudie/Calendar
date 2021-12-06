@@ -78,10 +78,10 @@ export default {
         default:
           return 'not a month';
       }
-    }
-  },
-  dailyEvents() {
-    return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month && event.date.getDate == event.dayOfMonth));
+    },
+    dailyEvents() {
+      return this.events.filter(event => (event.date.getFullYear == this.year && event.date.getMonth == this.month && event.date.getDate == event.dayOfMonth));
+    },
   },
   methods: {
 
