@@ -36,12 +36,17 @@ export default {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
       events: [],
+      user:
     }
   },
   async mounted() {
-    this.events = await this.getEvents();
+    if (user)
+      this.events = await this.getEvents();
   },
   computed: {
+    user() {
+      return this.$root.$data.user;
+    },
     days: function() {
       var currentMonthDays = this.createCurrentMonth(this.year, this.month, new Date(this.year, this.month+1, 0).getDate());
       var previousMonthDays = this.createPreviousMonth(currentMonthDays, this.year, this.month);

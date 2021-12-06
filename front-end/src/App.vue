@@ -28,11 +28,11 @@ export default {
         await axios.delete("/api/users");
         this.$root.$data.user = null;
 
-        console.log(this.$root);
-        console.log(this.$root.$data);
-        console.log(this.$root.$data.$route);
-        console.log(this.$root.$data.$route.path);
-        console.log(this.$router);
+        console.log(this.$root.$options);
+        console.log(this.$root.$options.router);
+        console.log(this.$root.$options.router.history);
+        console.log(this.$root.$options.router.history.current);
+        console.log(this.$root.$options.router.history.current.path);
 
         if (this.$root.$options.router.history.current.path != '/')
           this.$router.push('/');
