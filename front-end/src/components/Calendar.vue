@@ -36,7 +36,6 @@ export default {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
       events: [],
-      user:
     }
   },
   async mounted() {
